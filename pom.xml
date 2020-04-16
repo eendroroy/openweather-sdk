@@ -89,13 +89,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
-                    <source>7</source>
-                    <target>7</target>
-                </configuration>
-                <weatherConfiguration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                </weatherConfiguration>
+                </configuration>
             </plugin>
         </plugins>
     </build>

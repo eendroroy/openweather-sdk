@@ -1,8 +1,10 @@
 package com.github.eendroroy.sdk.openweather.client;
 
+import com.github.eendroroy.sdk.openweather.Unit;
 import com.github.eendroroy.sdk.openweather.config.WeatherConfiguration;
 import com.github.eendroroy.sdk.openweather.converter.ResponseConverter;
 import com.github.eendroroy.sdk.openweather.endpoint.WeatherEndpoints;
+import com.github.eendroroy.sdk.openweather.response.FindWeatherResponse;
 import com.github.eendroroy.sdk.openweather.response.GetWeatherResponse;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -30,11 +32,44 @@ public class WeatherClient {
         return new ResponseConverter<>(retrofit, response).convert();
     }
 
+
+    public FindWeatherResponse weatherByCityName(String cityName, Unit unit) throws IOException {
+        Response<FindWeatherResponse> response =
+                endpoints.weatherByCityName(
+                        cityName,
+                        weatherConfiguration.getAppId(),
+                        unit.toString()
+                ).execute();
+        return new ResponseConverter<>(retrofit, response).convert();
+    }
+
+    public FindWeatherResponse weatherByCityName(String cityName, String state, Unit unit) throws IOException {
+        Response<FindWeatherResponse> response =
+                endpoints.weatherByCityName(
+                        cityName + "," + state,
+                        weatherConfiguration.getAppId(),
+                        unit.toString()
+                ).execute();
+        return new ResponseConverter<>(retrofit, response).convert();
+    }
+
     public GetWeatherResponse weatherByCityName(String cityName, String state) throws IOException {
         Response<GetWeatherResponse> response =
                 endpoints.weatherByCityName(
                         cityName + "," + state,
                         weatherConfiguration.getAppId()
+                ).execute();
+        return new ResponseConverter<>(retrofit, response).convert();
+    }
+
+    public FindWeatherResponse weatherByCityName(
+            String cityName, String state, String countryCode, Unit unit
+    ) throws IOException {
+        Response<FindWeatherResponse> response =
+                endpoints.weatherByCityName(
+                        cityName + "," + state + "," + countryCode,
+                        weatherConfiguration.getAppId(),
+                        unit.toString()
                 ).execute();
         return new ResponseConverter<>(retrofit, response).convert();
     }

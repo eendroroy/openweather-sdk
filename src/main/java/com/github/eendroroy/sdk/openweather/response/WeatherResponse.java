@@ -26,4 +26,9 @@ public class WeatherResponse implements BaseResponse {
 
     @JsonProperty("icon")
     public String icon;
+
+    @JsonProperty("icon_url")
+    public String iconUrl(){
+        return "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    }
 }

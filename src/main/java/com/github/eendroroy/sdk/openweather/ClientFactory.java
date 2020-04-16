@@ -14,20 +14,17 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  */
 
 public class ClientFactory {
-    private final OWInterceptor interceptor;
-    private final WeatherConfiguration weatherConfiguration;
+    private OWInterceptor interceptor = new DefaultOWInterceptor();
+    private WeatherConfiguration weatherConfiguration = new DefaultWeatherConfiguration();
 
-    public ClientFactory() {
-        this(new DefaultWeatherConfiguration(), new DefaultOWInterceptor());
-    }
-
-    public ClientFactory(WeatherConfiguration weatherConfiguration) {
-        this(weatherConfiguration, new DefaultOWInterceptor());
-    }
-
-    public ClientFactory(WeatherConfiguration weatherConfiguration, OWInterceptor interceptor) {
+    public ClientFactory with(WeatherConfiguration weatherConfiguration) {
         this.weatherConfiguration = weatherConfiguration;
+        return this;
+    }
+
+    public ClientFactory with(OWInterceptor interceptor) {
         this.interceptor = interceptor;
+        return this;
     }
 
     public WeatherClient weatherClient() {

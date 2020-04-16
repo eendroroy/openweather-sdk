@@ -55,4 +55,7 @@ public class GetWeatherResponse implements BaseResponse {
 
     @JsonProperty("cod")
     public Integer cod;
+
+    @JsonProperty("message")
+    public String message;
 }
