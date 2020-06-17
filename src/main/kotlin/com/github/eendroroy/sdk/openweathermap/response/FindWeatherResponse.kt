@@ -15,6 +15,6 @@ data class FindWeatherResponse(
         @JsonProperty("count") var count: Int?,
         @JsonProperty("list") var weathers: List<GetWeatherResponse>?
 ) : BaseResponse {
-    override var httpCode: String? = null
+    override var httpCode: Int? = null
     override var httpMessage: String? = null
 }

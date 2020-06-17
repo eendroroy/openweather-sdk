@@ -26,6 +26,6 @@ data class GetWeatherResponse(
         @JsonProperty("message") var message: String?,
         @JsonProperty("weather") var weather: List<Weather>?
 ) : BaseResponse {
-    override var httpCode: String? = null
+    override var httpCode: Int? = null
     override var httpMessage: String? = null
 }

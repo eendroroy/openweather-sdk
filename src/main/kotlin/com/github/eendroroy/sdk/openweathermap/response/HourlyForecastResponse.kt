@@ -18,6 +18,6 @@ data class HourlyForecastResponse(
         @JsonProperty("list") val list: List<ForecastListHoulry>?,
         @JsonProperty("city") val city: City?
 ) : BaseResponse {
-    override var httpCode: String? = null
+    override var httpCode: Int? = null
     override var httpMessage: String? = null
 }
