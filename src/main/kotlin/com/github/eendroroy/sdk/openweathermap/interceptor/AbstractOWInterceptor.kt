@@ -22,28 +22,18 @@ abstract class AbstractOWInterceptor : OWInterceptor {
     abstract fun interceptRequest(request: Request): Request
     abstract fun interceptResponse(response: Response): Response
     override fun rawResponseBody(response: Response): String {
-        return try {
-            val responseBody = response.body() ?: return ""
-            val source = responseBody.source()
-            source.request(Long.MAX_VALUE)
-            val buffer = source.buffer.clone()
-            buffer.readUtf8()
-        } catch (e: IOException) {
-            "<->"
-        } catch (e: IllegalStateException) {
-            "<->"
-        }
+        val responseBody = response.body() ?: return ""
+        val source = responseBody.source()
+        source.request(Long.MAX_VALUE)
+        val buffer = source.buffer.clone()
+        return buffer.readUtf8()
     }
 
     override fun rawRequestBody(request: Request): String {
-        return try {
-            val copy = request.newBuilder().build()
-            val buffer = Buffer()
-            val body = copy.body() ?: return "> EMPTY_BODY <"
-            body.writeTo(buffer)
-            buffer.readUtf8()
-        } catch (e: IOException) {
-            "<->"
-        }
+        val copy = request.newBuilder().build()
+        val buffer = Buffer()
+        val body = copy.body() ?: return ""
+        body.writeTo(buffer)
+        return buffer.readUtf8()
     }
 }

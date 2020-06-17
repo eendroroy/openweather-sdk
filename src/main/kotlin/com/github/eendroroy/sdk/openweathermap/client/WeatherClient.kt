@@ -1,8 +1,8 @@
 package com.github.eendroroy.sdk.openweathermap.client
 
-import com.github.eendroroy.sdk.openweathermap.Unit
 import com.github.eendroroy.sdk.openweathermap.config.WeatherConfiguration
 import com.github.eendroroy.sdk.openweathermap.converter.ResponseConverter
+import com.github.eendroroy.sdk.openweathermap.definition.WeatherUnit
 import com.github.eendroroy.sdk.openweathermap.endpoint.WeatherEndpoints
 import com.github.eendroroy.sdk.openweathermap.response.FindWeatherResponse
 import com.github.eendroroy.sdk.openweathermap.response.GetWeatherResponse
@@ -13,14 +13,11 @@ import java.io.IOException
 /**
  * @author indrajit
  */
-class WeatherClient(private val retrofit: Retrofit, weatherConfiguration: WeatherConfiguration) {
-    private val endpoints: WeatherEndpoints
-    private val weatherConfiguration: WeatherConfiguration
-
-    init {
-        endpoints = retrofit.create(WeatherEndpoints::class.java)
-        this.weatherConfiguration = weatherConfiguration
-    }
+class WeatherClient(
+        private val retrofit: Retrofit,
+        private val weatherConfiguration: WeatherConfiguration
+) {
+    private val endpoints: WeatherEndpoints = retrofit.create(WeatherEndpoints::class.java)
 
     @Throws(IOException::class)
     fun weatherByCityName(cityName: String?): GetWeatherResponse? {
@@ -31,19 +28,20 @@ class WeatherClient(private val retrofit: Retrofit, weatherConfiguration: Weathe
     }
 
     @Throws(IOException::class)
-    fun weatherByCityName(cityName: String?, unit: Unit): FindWeatherResponse? {
+    fun weatherByCityName(cityName: String?, weatherUnit: WeatherUnit): FindWeatherResponse? {
         val response: Response<FindWeatherResponse?> = endpoints.weatherByCityName(
-                cityName, weatherConfiguration.appId(), unit.toString()
+                cityName, weatherConfiguration.appId(), weatherUnit.toString()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }
 
     @Throws(IOException::class)
-    fun weatherByCityName(cityName: String, state: String, unit: Unit): FindWeatherResponse? {
+    fun weatherByCityName(cityName: String, state: String, weatherUnit: WeatherUnit): FindWeatherResponse? {
         val response: Response<FindWeatherResponse?> = endpoints.weatherByCityName(
-                "$cityName,$state", weatherConfiguration.appId(), unit.toString()
+                "$cityName,$state", weatherConfiguration.appId(), weatherUnit.toString()
         ).execute()
-        return ResponseConverter(retrofit, response).convert()
+        val responseBody: FindWeatherResponse? = ResponseConverter(retrofit, response).convert()
+        return responseBody
     }
 
     @Throws(IOException::class)
@@ -56,10 +54,10 @@ class WeatherClient(private val retrofit: Retrofit, weatherConfiguration: Weathe
 
     @Throws(IOException::class)
     fun weatherByCityName(
-            cityName: String, state: String, countryCode: String, unit: Unit
+            cityName: String, state: String, countryCode: String, weatherUnit: WeatherUnit
     ): FindWeatherResponse? {
         val response: Response<FindWeatherResponse?> = endpoints.weatherByCityName(
-                "$cityName,$state,$countryCode", weatherConfiguration.appId(), unit.toString()
+                "$cityName,$state,$countryCode", weatherConfiguration.appId(), weatherUnit.toString()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }

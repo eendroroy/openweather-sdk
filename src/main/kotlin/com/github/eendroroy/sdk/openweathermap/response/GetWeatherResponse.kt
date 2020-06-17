@@ -1,52 +1,31 @@
 package com.github.eendroroy.sdk.openweathermap.response
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
+import com.github.eendroroy.sdk.openweathermap.response.embedded.*
 
 /**
  * @author indrajit
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("weather")
-class GetWeatherResponse : BaseResponse {
-    @JsonProperty("coord")
-    var coOrd: CoOrdResponse? = null
-
-    @JsonProperty("weather")
-    var weather: List<WeatherResponse>? = null
-
-    @JsonProperty("base")
-    var base: String? = null
-
-    @JsonProperty("main")
-    var main: MainResponse? = null
-
-    @JsonProperty("visibility")
-    var visibility: Int? = null
-
-    @JsonProperty("wind")
-    var wind: WindResponse? = null
-
-    @JsonProperty("clouds")
-    var clouds: CloudsResponse? = null
-
-    @JsonProperty("dt")
-    var dt: Int? = null
-
-    @JsonProperty("sys")
-    var sys: SysResponse? = null
-
-    @JsonProperty("timezone")
-    var timezone: Int? = null
-
-    @JsonProperty("id")
-    var id: Int? = null
-
-    @JsonProperty("name")
-    var name: String? = null
-
-    @JsonProperty("cod")
-    var cod: Int? = null
-
-    @JsonProperty("message")
-    var message: String? = null
+data class GetWeatherResponse(
+        @JsonProperty("coord")      var coOrd: CoOrd?,
+        @JsonProperty("base")       var base: String?,
+        @JsonProperty("main")       var main: Main?,
+        @JsonProperty("visibility") var visibility: Int?,
+        @JsonProperty("wind")       var wind: Wind?,
+        @JsonProperty("clouds")     var clouds: Clouds?,
+        @JsonProperty("dt")         var dt: Int?,
+        @JsonProperty("sys")        var sys: Sys?,
+        @JsonProperty("timezone")   var timezone: Int?,
+        @JsonProperty("id")         var id: Int?,
+        @JsonProperty("name")       var name: String?,
+        @JsonProperty("cod")        var cod: Int?,
+        @JsonProperty("message")    var message: String?,
+        @JsonProperty("weather")    var weather: List<Weather>?
+) : BaseResponse {
+    override var httpCode: String? = null
+    override var httpMessage: String? = null
 }

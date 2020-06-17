@@ -6,4 +6,5 @@ package com.github.eendroroy.sdk.openweathermap.config
 interface WeatherConfiguration {
     fun baseUrl(): String
     fun appId(): String
+    fun acceptUnsafeSSL(): Boolean
 }

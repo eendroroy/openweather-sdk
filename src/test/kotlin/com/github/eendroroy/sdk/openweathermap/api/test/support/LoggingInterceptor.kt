@@ -10,8 +10,10 @@ import okhttp3.Response
 class LoggingInterceptor : AbstractOWInterceptor() {
     override fun interceptRequest(request: Request): Request {
         println()
+        println("======================================================================================")
         println("Request  --> " + request.url().toString())
         println("Request  --> " + rawRequestBody(request))
+        println()
         return request
     }
 
@@ -20,6 +22,8 @@ class LoggingInterceptor : AbstractOWInterceptor() {
         println("Response --> " + response.code())
         println("Response --> " + response.message())
         println("Response --> " + rawResponseBody(response))
+        println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        println()
         return response
     }
 }

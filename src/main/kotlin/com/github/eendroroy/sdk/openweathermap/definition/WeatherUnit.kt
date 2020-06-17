@@ -1,13 +1,13 @@
-package com.github.eendroroy.sdk.openweathermap
+package com.github.eendroroy.sdk.openweathermap.definition
 
 /**
  * @author indrajit
  */
-enum class Unit(private val value: String) {
+enum class WeatherUnit(private val value: String) {
     STANDARD("standard"), METRIC("metric"), IMPERIAL("imperial");
 
     override fun toString(): String {
-        return value
+        return value()
     }
 
     fun value(): String {

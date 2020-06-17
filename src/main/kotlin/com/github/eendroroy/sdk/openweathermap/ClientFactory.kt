@@ -1,5 +1,6 @@
 package com.github.eendroroy.sdk.openweathermap
 
+import com.github.eendroroy.sdk.openweathermap.client.UnsafeOkHttpClientBuilder
 import com.github.eendroroy.sdk.openweathermap.client.WeatherClient
 import com.github.eendroroy.sdk.openweathermap.config.DefaultWeatherConfiguration
 import com.github.eendroroy.sdk.openweathermap.config.WeatherConfiguration
@@ -13,10 +14,13 @@ import retrofit2.converter.jackson.JacksonConverterFactory
  * @author indrajit
  */
 class ClientFactory {
+    val weatherClient: WeatherClient get() { return WeatherClient(retrofit, configuration) }
+
     private var interceptor: OWInterceptor = DefaultOWInterceptor()
-    private var weatherConfiguration: WeatherConfiguration = DefaultWeatherConfiguration()
+    private var configuration: WeatherConfiguration = DefaultWeatherConfiguration()
+
     fun with(weatherConfiguration: WeatherConfiguration): ClientFactory {
-        this.weatherConfiguration = weatherConfiguration
+        this.configuration = weatherConfiguration
         return this
     }
 
@@ -25,13 +29,20 @@ class ClientFactory {
         return this
     }
 
-    fun weatherClient(): WeatherClient {
-        val okHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        val retrofit = Retrofit.Builder()
-                .client(okHttpClient)
-                .baseUrl(weatherConfiguration.baseUrl())
-                .addConverterFactory(JacksonConverterFactory.create())
-                .build()
-        return WeatherClient(retrofit, weatherConfiguration)
-    }
+    private val retrofit: Retrofit
+        get() {
+            val okHttpClientBuilder: OkHttpClient.Builder = if (configuration.acceptUnsafeSSL()) {
+                UnsafeOkHttpClientBuilder.unsafeOkHttpClientBuilder
+            } else {
+                OkHttpClient.Builder()
+            }
+
+            val okHttpClient = okHttpClientBuilder.addInterceptor(interceptor).build()
+
+            return Retrofit.Builder()
+                    .client(okHttpClient)
+                    .baseUrl(configuration.baseUrl())
+                    .addConverterFactory(JacksonConverterFactory.create())
+                    .build()
+        }
 }

@@ -1,22 +1,20 @@
 package com.github.eendroroy.sdk.openweathermap.response
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 
 /**
  * @author indrajit
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("weathers")
-class FindWeatherResponse : BaseResponse {
-    @JsonProperty("cod")
-    var cod: Int? = null
-
-    @JsonProperty("message")
-    var message: String? = null
-
-    @JsonProperty("count")
-    var count: Int? = null
-
-    @JsonProperty("list")
-    var weathers: List<GetWeatherResponse>? = null
+data class FindWeatherResponse(
+        @JsonProperty("cod")     var cod: Int?,
+        @JsonProperty("message") var message: String?,
+        @JsonProperty("count")   var count: Int?,
+        @JsonProperty("list")    var weathers: List<GetWeatherResponse>?
+) : BaseResponse {
+    override var httpCode: String? = null
+    override var httpMessage: String? = null
 }

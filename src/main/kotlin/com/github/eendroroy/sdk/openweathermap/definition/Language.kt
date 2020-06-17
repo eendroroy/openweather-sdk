@@ -1,4 +1,4 @@
-package com.github.eendroroy.sdk.openweathermap
+package com.github.eendroroy.sdk.openweathermap.definition
 
 /**
  * @author indrajit
@@ -56,7 +56,7 @@ enum class Language(private val value: String) {
     ZULU("zu");
 
     override fun toString(): String {
-        return value
+        return value()
     }
 
     fun value(): String {

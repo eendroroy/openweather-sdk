@@ -1,6 +1,5 @@
 package com.github.eendroroy.sdk.openweathermap.converter
 
-import com.github.eendroroy.sdk.openweathermap.response.BaseResponse
 import retrofit2.Response
 import retrofit2.Retrofit
 import java.io.IOException
@@ -8,15 +7,15 @@ import java.io.IOException
 /**
  * @author indrajit
  */
-class ResponseConverter<T>(var retrofit: Retrofit, var response: Response<T>) {
+class ResponseConverter<T>(var retrofit: Retrofit, var apiResponse: Response<T>) {
+
     @Throws(IOException::class)
-    fun convert(): T? {
-        return if (response.isSuccessful) {
-            response.body()
+    inline fun <reified T> convert(): T? {
+        return if (apiResponse.isSuccessful) {
+            apiResponse.body() as T?
         } else {
-            val errorConverter = retrofit.responseBodyConverter<BaseResponse>(BaseResponse::class.java, arrayOfNulls(0))
-            errorConverter.convert(response.errorBody()!!) as T?
+            val errorConverter = retrofit.responseBodyConverter<T>(T::class.java, arrayOfNulls(0))
+            errorConverter.convert(apiResponse.errorBody()!!)
         }
     }
-
 }
