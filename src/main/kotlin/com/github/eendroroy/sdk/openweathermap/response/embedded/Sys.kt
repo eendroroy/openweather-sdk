@@ -10,10 +10,11 @@ import com.fasterxml.jackson.annotation.JsonRootName
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("sys")
 data class Sys(
-        @JsonProperty("type")    var type: Int?,
-        @JsonProperty("id")      var id: Int?,
-        @JsonProperty("message") var message: Double?,
-        @JsonProperty("country") var country: String?,
-        @JsonProperty("sunrise") var sunrise: Int?,
-        @JsonProperty("sunset")  var sunset: Int?
+        @JsonProperty("type") val type: Int?,
+        @JsonProperty("id") val id: Int?,
+        @JsonProperty("message") val message: Double?,
+        @JsonProperty("country") val country: String?,
+        @JsonProperty("sunrise") val sunrise: Int?,
+        @JsonProperty("sunset") val sunset: Int?,
+        @JsonProperty("pod") val pod: String?
 )

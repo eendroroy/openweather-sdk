@@ -3,7 +3,7 @@ package com.github.eendroroy.sdk.openweathermap.config
 /**
  * @author indrajit
  */
-class DefaultWeatherConfiguration : WeatherConfiguration {
+class DefaultOWConfiguration : OWConfiguration {
     override fun baseUrl(): String {
         return "https://samples.openweathermap.org/"
     }

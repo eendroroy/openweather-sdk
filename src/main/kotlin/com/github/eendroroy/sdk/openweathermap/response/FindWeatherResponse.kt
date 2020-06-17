@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonRootName
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("weathers")
 data class FindWeatherResponse(
-        @JsonProperty("cod")     var cod: Int?,
+        @JsonProperty("cod") var cod: Int?,
         @JsonProperty("message") var message: String?,
-        @JsonProperty("count")   var count: Int?,
-        @JsonProperty("list")    var weathers: List<GetWeatherResponse>?
+        @JsonProperty("count") var count: Int?,
+        @JsonProperty("list") var weathers: List<GetWeatherResponse>?
 ) : BaseResponse {
     override var httpCode: String? = null
     override var httpMessage: String? = null

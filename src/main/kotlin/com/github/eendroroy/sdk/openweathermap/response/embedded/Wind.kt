@@ -10,6 +10,6 @@ import com.fasterxml.jackson.annotation.JsonRootName
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("wind")
 data class Wind(
-        @JsonProperty("deg") var deg: Int?,
-        @JsonProperty("speed") var speed: Double?
+        @JsonProperty("deg") val deg: Double?,
+        @JsonProperty("speed") val speed: Double?
 )

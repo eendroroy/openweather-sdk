@@ -10,10 +10,13 @@ import com.fasterxml.jackson.annotation.JsonRootName
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("main")
 data class Main(
-        @JsonProperty("temp")       var temp: Float?,
-        @JsonProperty("feels_like") var feelsLike: Float?,
-        @JsonProperty("temp_min")   var tempMin: Float?,
-        @JsonProperty("temp_max")   var tempMax: Float?,
-        @JsonProperty("pressure")   var pressure: Int?,
-        @JsonProperty("humidity")   var humidity: Int?
+        @JsonProperty("temp") val temp: Double?,
+        @JsonProperty("feels_like") val feelsLike: Double?,
+        @JsonProperty("temp_min") val tempMin: Double?,
+        @JsonProperty("temp_max") val tempMax: Double?,
+        @JsonProperty("pressure") val pressure: Int?,
+        @JsonProperty("humidity") val humidity: Int?,
+        @JsonProperty("sea_level") val seaLevel: Double?,
+        @JsonProperty("grnd_level") val groundLevel: Double?,
+        @JsonProperty("temp_kf") val tempKf: Double?
 )

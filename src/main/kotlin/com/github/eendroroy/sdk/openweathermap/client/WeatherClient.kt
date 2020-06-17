@@ -1,6 +1,6 @@
 package com.github.eendroroy.sdk.openweathermap.client
 
-import com.github.eendroroy.sdk.openweathermap.config.WeatherConfiguration
+import com.github.eendroroy.sdk.openweathermap.config.OWConfiguration
 import com.github.eendroroy.sdk.openweathermap.converter.ResponseConverter
 import com.github.eendroroy.sdk.openweathermap.definition.WeatherUnit
 import com.github.eendroroy.sdk.openweathermap.endpoint.WeatherEndpoints
@@ -15,14 +15,14 @@ import java.io.IOException
  */
 class WeatherClient(
         private val retrofit: Retrofit,
-        private val weatherConfiguration: WeatherConfiguration
+        private val OWConfiguration: OWConfiguration
 ) {
     private val endpoints: WeatherEndpoints = retrofit.create(WeatherEndpoints::class.java)
 
     @Throws(IOException::class)
     fun weatherByCityName(cityName: String?): GetWeatherResponse? {
         val response: Response<GetWeatherResponse?> = endpoints.weatherByCityName(
-                cityName, weatherConfiguration.appId()
+                cityName, OWConfiguration.appId()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }
@@ -30,7 +30,7 @@ class WeatherClient(
     @Throws(IOException::class)
     fun weatherByCityName(cityName: String?, weatherUnit: WeatherUnit): FindWeatherResponse? {
         val response: Response<FindWeatherResponse?> = endpoints.weatherByCityName(
-                cityName, weatherConfiguration.appId(), weatherUnit.toString()
+                cityName, OWConfiguration.appId(), weatherUnit.toString()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }
@@ -38,7 +38,7 @@ class WeatherClient(
     @Throws(IOException::class)
     fun weatherByCityName(cityName: String, state: String, weatherUnit: WeatherUnit): FindWeatherResponse? {
         val response: Response<FindWeatherResponse?> = endpoints.weatherByCityName(
-                "$cityName,$state", weatherConfiguration.appId(), weatherUnit.toString()
+                "$cityName,$state", OWConfiguration.appId(), weatherUnit.toString()
         ).execute()
         val responseBody: FindWeatherResponse? = ResponseConverter(retrofit, response).convert()
         return responseBody
@@ -47,7 +47,7 @@ class WeatherClient(
     @Throws(IOException::class)
     fun weatherByCityName(cityName: String, state: String): GetWeatherResponse? {
         val response: Response<GetWeatherResponse?> = endpoints.weatherByCityName(
-                "$cityName,$state", weatherConfiguration.appId()
+                "$cityName,$state", OWConfiguration.appId()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }
@@ -57,7 +57,7 @@ class WeatherClient(
             cityName: String, state: String, countryCode: String, weatherUnit: WeatherUnit
     ): FindWeatherResponse? {
         val response: Response<FindWeatherResponse?> = endpoints.weatherByCityName(
-                "$cityName,$state,$countryCode", weatherConfiguration.appId(), weatherUnit.toString()
+                "$cityName,$state,$countryCode", OWConfiguration.appId(), weatherUnit.toString()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }
@@ -65,7 +65,7 @@ class WeatherClient(
     @Throws(IOException::class)
     fun weatherByCityName(cityName: String, state: String, countryCode: String): GetWeatherResponse? {
         val response: Response<GetWeatherResponse?> = endpoints.weatherByCityName(
-                "$cityName,$state,$countryCode", weatherConfiguration.appId()
+                "$cityName,$state,$countryCode", OWConfiguration.appId()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }
@@ -73,7 +73,7 @@ class WeatherClient(
     @Throws(IOException::class)
     fun weatherByCityId(cityId: String?): GetWeatherResponse? {
         val response: Response<GetWeatherResponse?> = endpoints.weatherByCityId(
-                cityId, weatherConfiguration.appId()
+                cityId, OWConfiguration.appId()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }
@@ -81,7 +81,7 @@ class WeatherClient(
     @Throws(IOException::class)
     fun weatherByCoOrd(latitude: String?, longitude: String?): GetWeatherResponse? {
         val response: Response<GetWeatherResponse?> = endpoints.weatherByCoOrd(
-                latitude, longitude, weatherConfiguration.appId()
+                latitude, longitude, OWConfiguration.appId()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }
@@ -89,7 +89,7 @@ class WeatherClient(
     @Throws(IOException::class)
     fun weatherByZip(zipCode: String, countryCode: String): GetWeatherResponse? {
         val response: Response<GetWeatherResponse?> = endpoints.weatherByZip(
-                "$zipCode,$countryCode", weatherConfiguration.appId()
+                "$zipCode,$countryCode", OWConfiguration.appId()
         ).execute()
         return ResponseConverter(retrofit, response).convert()
     }

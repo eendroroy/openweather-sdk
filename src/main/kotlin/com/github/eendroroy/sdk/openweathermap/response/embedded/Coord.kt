@@ -8,5 +8,8 @@ import com.fasterxml.jackson.annotation.JsonRootName
  * @author indrajit
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonRootName("clouds")
-data class Clouds(@JsonProperty("all") val all: Int?)
+@JsonRootName("coord")
+data class Coord(
+        @JsonProperty("lon") val lon: Double?,
+        @JsonProperty("lat") val lat: Double?
+)

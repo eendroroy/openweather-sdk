@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonRootName
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("weather")
 data class Weather(
-        @JsonProperty("id")          var id: Int?,
-        @JsonProperty("main")        var main: String?,
-        @JsonProperty("description") var description: String?,
-        @JsonProperty("icon")        var icon: String?
+        @JsonProperty("id") val id: Int?,
+        @JsonProperty("main") val main: String?,
+        @JsonProperty("description") val description: String?,
+        @JsonProperty("icon") val icon: String?
 ) {
     val iconUrl: String
         @JsonProperty("icon_url")

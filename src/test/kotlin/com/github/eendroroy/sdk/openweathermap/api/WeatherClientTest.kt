@@ -9,7 +9,7 @@ import java.io.IOException
 /**
  * @author indrajit
  */
-internal object OWClientTest {
+internal object WeatherClientTest {
     @JvmStatic
     fun main(args: Array<String>) {
         val interceptor: OWInterceptor = LoggingInterceptor()
