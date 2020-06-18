@@ -13,14 +13,14 @@ import java.io.IOException
  */
 class HourlyForecastClient(
         private val retrofit: Retrofit,
-        private val OWConfiguration: OWConfiguration
+        private val configuration: OWConfiguration
 ) {
     private val endpointsHourly: HourlyForecastEndpoints = retrofit.create(HourlyForecastEndpoints::class.java)
 
     @Throws(IOException::class)
     fun hourlyForecastByCityName(cityName: String?): HourlyForecastResponse? {
         val responseHourly: Response<HourlyForecastResponse?> = endpointsHourly.hourlyForecastByCityName(
-                cityName, OWConfiguration.appId()
+                cityName, configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -28,7 +28,7 @@ class HourlyForecastClient(
     @Throws(IOException::class)
     fun hourlyForecastByCityName(cityName: String, state: String): HourlyForecastResponse? {
         val responseHourly: Response<HourlyForecastResponse?> = endpointsHourly.hourlyForecastByCityName(
-                "$cityName,$state", OWConfiguration.appId()
+                "$cityName,$state", configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -36,7 +36,7 @@ class HourlyForecastClient(
     @Throws(IOException::class)
     fun hourlyForecastByCityName(cityName: String, state: String, countryCode: String): HourlyForecastResponse? {
         val responseHourly: Response<HourlyForecastResponse?> = endpointsHourly.hourlyForecastByCityName(
-                "$cityName,$state,$countryCode", OWConfiguration.appId()
+                "$cityName,$state,$countryCode", configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -44,7 +44,7 @@ class HourlyForecastClient(
     @Throws(IOException::class)
     fun hourlyForecastByCityId(cityId: String?): HourlyForecastResponse? {
         val responseHourly: Response<HourlyForecastResponse?> = endpointsHourly.hourlyForecastByCityId(
-                cityId, OWConfiguration.appId()
+                cityId, configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -52,7 +52,7 @@ class HourlyForecastClient(
     @Throws(IOException::class)
     fun hourlyForecastByCoOrd(latitude: String?, longitude: String?): HourlyForecastResponse? {
         val responseHourly: Response<HourlyForecastResponse?> = endpointsHourly.hourlyForecastByCoOrd(
-                latitude, longitude, OWConfiguration.appId()
+                latitude, longitude, configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -60,7 +60,7 @@ class HourlyForecastClient(
     @Throws(IOException::class)
     fun hourlyForecastByZip(zipCode: String, countryCode: String): HourlyForecastResponse? {
         val responseHourly: Response<HourlyForecastResponse?> = endpointsHourly.hourlyForecastByZip(
-                "$zipCode,$countryCode", OWConfiguration.appId()
+                "$zipCode,$countryCode", configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }

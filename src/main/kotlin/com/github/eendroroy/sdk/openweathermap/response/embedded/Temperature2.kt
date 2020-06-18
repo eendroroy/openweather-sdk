@@ -9,10 +9,11 @@ import com.fasterxml.jackson.annotation.JsonRootName
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("temp")
-data class Temperature(
-        @JsonProperty("average") val average: Double?,
-        @JsonProperty("average_max") val averageMax: Double?,
-        @JsonProperty("average_min") val averageMin: Double?,
-        @JsonProperty("record_max") val recordMax: Double?,
-        @JsonProperty("record_min") val recordMin: Double?
+data class Temperature2(
+        @JsonProperty("day") val day : Double?,
+        @JsonProperty("min") val min : Double?,
+        @JsonProperty("max") val max : Double?,
+        @JsonProperty("night") val night : Double?,
+        @JsonProperty("eve") val eve : Double?,
+        @JsonProperty("morn") val morn : Double?
 )

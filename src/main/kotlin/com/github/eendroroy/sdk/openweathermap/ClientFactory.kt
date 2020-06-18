@@ -33,6 +33,11 @@ class ClientFactory {
             return ClimateClient(retrofit, configuration)
         }
 
+    val oneCallClient: OneCallClient
+        get() {
+            return OneCallClient(retrofit, configuration)
+        }
+
     private var interceptor: OWInterceptor = DefaultOWInterceptor()
     private var configuration: OWConfiguration = DefaultOWConfiguration()
 

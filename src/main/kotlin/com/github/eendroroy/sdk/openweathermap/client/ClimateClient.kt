@@ -13,14 +13,14 @@ import java.io.IOException
  */
 class ClimateClient(
         private val retrofit: Retrofit,
-        private val OWConfiguration: OWConfiguration
+        private val configuration: OWConfiguration
 ) {
     private val endpointsDaily: ClimateEndpoints = retrofit.create(ClimateEndpoints::class.java)
 
     @Throws(IOException::class)
     fun climateByCityName(cityName: String?): ClimateResponse? {
         val responseHourly: Response<ClimateResponse?> = endpointsDaily.climateByCityName(
-                cityName, OWConfiguration.appId()
+                cityName, configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -28,7 +28,7 @@ class ClimateClient(
     @Throws(IOException::class)
     fun climateByCityName(cityName: String, state: String): ClimateResponse? {
         val responseHourly: Response<ClimateResponse?> = endpointsDaily.climateByCityName(
-                "$cityName,$state", OWConfiguration.appId()
+                "$cityName,$state", configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -36,7 +36,7 @@ class ClimateClient(
     @Throws(IOException::class)
     fun climateByCityName(cityName: String, state: String, countryCode: String): ClimateResponse? {
         val responseHourly: Response<ClimateResponse?> = endpointsDaily.climateByCityName(
-                "$cityName,$state,$countryCode", OWConfiguration.appId()
+                "$cityName,$state,$countryCode", configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -44,7 +44,7 @@ class ClimateClient(
     @Throws(IOException::class)
     fun climateByCityId(cityId: String?): ClimateResponse? {
         val responseHourly: Response<ClimateResponse?> = endpointsDaily.climateByCityId(
-                cityId, OWConfiguration.appId()
+                cityId, configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -52,7 +52,7 @@ class ClimateClient(
     @Throws(IOException::class)
     fun climateByCoOrd(latitude: String?, longitude: String?): ClimateResponse? {
         val responseHourly: Response<ClimateResponse?> = endpointsDaily.climateByCoOrd(
-                latitude, longitude, OWConfiguration.appId()
+                latitude, longitude, configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -60,7 +60,7 @@ class ClimateClient(
     @Throws(IOException::class)
     fun climateByZip(zipCode: String, countryCode: String): ClimateResponse? {
         val responseHourly: Response<ClimateResponse?> = endpointsDaily.climateByZip(
-                "$zipCode,$countryCode", OWConfiguration.appId()
+                "$zipCode,$countryCode", configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }

@@ -13,14 +13,14 @@ import java.io.IOException
  */
 class DailyForecastClient(
         private val retrofit: Retrofit,
-        private val OWConfiguration: OWConfiguration
+        private val configuration: OWConfiguration
 ) {
     private val endpointsDaily: DailyForecastEndpoints = retrofit.create(DailyForecastEndpoints::class.java)
 
     @Throws(IOException::class)
     fun dailyForecastByCityName(cityName: String?): DailyForecastResponse? {
         val responseHourly: Response<DailyForecastResponse?> = endpointsDaily.dailyForecastByCityName(
-                cityName, OWConfiguration.appId()
+                cityName, configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -28,7 +28,7 @@ class DailyForecastClient(
     @Throws(IOException::class)
     fun dailyForecastByCityName(cityName: String, state: String): DailyForecastResponse? {
         val responseHourly: Response<DailyForecastResponse?> = endpointsDaily.dailyForecastByCityName(
-                "$cityName,$state", OWConfiguration.appId()
+                "$cityName,$state", configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -36,7 +36,7 @@ class DailyForecastClient(
     @Throws(IOException::class)
     fun dailyForecastByCityName(cityName: String, state: String, countryCode: String): DailyForecastResponse? {
         val responseHourly: Response<DailyForecastResponse?> = endpointsDaily.dailyForecastByCityName(
-                "$cityName,$state,$countryCode", OWConfiguration.appId()
+                "$cityName,$state,$countryCode", configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -44,7 +44,7 @@ class DailyForecastClient(
     @Throws(IOException::class)
     fun dailyForecastByCityId(cityId: String?): DailyForecastResponse? {
         val responseHourly: Response<DailyForecastResponse?> = endpointsDaily.dailyForecastByCityId(
-                cityId, OWConfiguration.appId()
+                cityId, configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -52,7 +52,7 @@ class DailyForecastClient(
     @Throws(IOException::class)
     fun dailyForecastByCoOrd(latitude: String?, longitude: String?): DailyForecastResponse? {
         val responseHourly: Response<DailyForecastResponse?> = endpointsDaily.dailyForecastByCoOrd(
-                latitude, longitude, OWConfiguration.appId()
+                latitude, longitude, configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }
@@ -60,7 +60,7 @@ class DailyForecastClient(
     @Throws(IOException::class)
     fun dailyForecastByZip(zipCode: String, countryCode: String): DailyForecastResponse? {
         val responseHourly: Response<DailyForecastResponse?> = endpointsDaily.dailyForecastByZip(
-                "$zipCode,$countryCode", OWConfiguration.appId()
+                "$zipCode,$countryCode", configuration.appId()
         ).execute()
         return ResponseConverter(retrofit, responseHourly).convert()
     }

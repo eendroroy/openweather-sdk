@@ -13,6 +13,6 @@ data class ForecastClimate(
         @JsonProperty("dt") val dt: Int?,
         @JsonProperty("humidity") val humidity: Double?,
         @JsonProperty("pressure") val pressure: Double?,
-        @JsonProperty("temp") val temperature: Temperature?,
+        @JsonProperty("temp") val temperature: Temperature1?,
         @JsonProperty("wind_speed") val windSpeed: Double?
 )
