@@ -22,21 +22,21 @@ class OneCallClient(
     private val endpointsOneCall: OneCallEndpoints = retrofit.create(OneCallEndpoints::class.java)
 
     @Throws(IOException::class)
-    fun oneCallByCoOrd(latitude: String?, longitude: String?): OneCallResponse? {
+    fun oneCallByCoOrd(latitude: Double, longitude: Double): OneCallResponse? {
         return oneCallByCoOrd(latitude, longitude, null, null, null)
     }
     @Throws(IOException::class)
-    fun oneCallByCoOrd(latitude: String?, longitude: String?, exclude: List<OneCallPart>?): OneCallResponse? {
+    fun oneCallByCoOrd(latitude: Double, longitude: Double, exclude: List<OneCallPart>?): OneCallResponse? {
         return oneCallByCoOrd(latitude, longitude, exclude, null, null)
     }
     @Throws(IOException::class)
-    fun oneCallByCoOrd(latitude: String?, longitude: String?, lang: Language?, unit: WeatherUnit?): OneCallResponse? {
+    fun oneCallByCoOrd(latitude: Double, longitude: Double, lang: Language?, unit: WeatherUnit?): OneCallResponse? {
         return oneCallByCoOrd(latitude, longitude, null, lang, unit)
     }
 
     @Throws(IOException::class)
     fun oneCallByCoOrd(
-            latitude: String?, longitude: String?, excludes: List<OneCallPart>?, lang: Language?, unit: WeatherUnit?
+            latitude: Double, longitude: Double, excludes: List<OneCallPart>?, lang: Language?, unit: WeatherUnit?
     ): OneCallResponse? {
         val exclude = excludes?.joinToString(",") { part -> part.value() }
 
@@ -50,21 +50,21 @@ class OneCallClient(
     }
 
     @Throws(IOException::class)
-    fun timeMachineByCoOrd(latitude: String?, longitude: String?, timestamp: Timestamp): OneCallResponse? {
+    fun timeMachineByCoOrd(latitude: Double, longitude: Double, timestamp: Timestamp): OneCallResponse? {
         return timeMachineByCoOrd(latitude, longitude, timestamp, null, null, null)
     }
     @Throws(IOException::class)
-    fun timeMachineByCoOrd(latitude: String?, longitude: String?, timestamp: Timestamp, exclude: List<OneCallPart>?): OneCallResponse? {
+    fun timeMachineByCoOrd(latitude: Double, longitude: Double, timestamp: Timestamp, exclude: List<OneCallPart>?): OneCallResponse? {
         return timeMachineByCoOrd(latitude, longitude, timestamp, exclude, null, null)
     }
     @Throws(IOException::class)
-    fun timeMachineByCoOrd(latitude: String?, longitude: String?, timestamp: Timestamp, lang: Language?, unit: WeatherUnit?): OneCallResponse? {
+    fun timeMachineByCoOrd(latitude: Double, longitude: Double, timestamp: Timestamp, lang: Language?, unit: WeatherUnit?): OneCallResponse? {
         return timeMachineByCoOrd(latitude, longitude, timestamp, null, lang, unit)
     }
 
     @Throws(IOException::class)
     fun timeMachineByCoOrd(
-            latitude: String?, longitude: String?, timestamp: Timestamp, excludes: List<OneCallPart>?, lang: Language?, unit: WeatherUnit?
+            latitude: Double, longitude: Double, timestamp: Timestamp, excludes: List<OneCallPart>?, lang: Language?, unit: WeatherUnit?
     ): OneCallResponse? {
         val exclude = excludes?.joinToString(",") { part -> part.value() }
 

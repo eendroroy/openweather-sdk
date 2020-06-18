@@ -17,7 +17,7 @@ internal object OneCallClientTest {
         val interceptor: OWInterceptor = LoggingInterceptor()
         val client = ClientFactory().with(interceptor).with(ProConf()).oneCallClient
         try {
-            val response1 = client.timeMachineByCoOrd("35", "139", Timestamp(DateTime.now().millis))
+            val response1 = client.timeMachineByCoOrd(35.0, 139.0, Timestamp(DateTime.now().millis))
             println(response1.toString())
         } catch (e: IOException) {
             e.printStackTrace()
