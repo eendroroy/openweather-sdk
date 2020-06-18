@@ -18,7 +18,7 @@ class ClimateClient(
     private val endpointsDaily: ClimateEndpoints = retrofit.create(ClimateEndpoints::class.java)
 
     @Throws(IOException::class)
-    fun climateByCityName(cityName: String?): ClimateResponse? {
+    fun climateByCityName(cityName: String): ClimateResponse? {
         val responseHourly: Response<ClimateResponse?> = endpointsDaily.climateByCityName(
                 cityName, configuration.appId()
         ).execute()
@@ -42,7 +42,7 @@ class ClimateClient(
     }
 
     @Throws(IOException::class)
-    fun climateByCityId(cityId: String?): ClimateResponse? {
+    fun climateByCityId(cityId: String): ClimateResponse? {
         val responseHourly: Response<ClimateResponse?> = endpointsDaily.climateByCityId(
                 cityId, configuration.appId()
         ).execute()
@@ -50,7 +50,7 @@ class ClimateClient(
     }
 
     @Throws(IOException::class)
-    fun climateByCoOrd(latitude: String?, longitude: String?): ClimateResponse? {
+    fun climateByCoOrd(latitude: Double, longitude: Double): ClimateResponse? {
         val responseHourly: Response<ClimateResponse?> = endpointsDaily.climateByCoOrd(
                 latitude, longitude, configuration.appId()
         ).execute()

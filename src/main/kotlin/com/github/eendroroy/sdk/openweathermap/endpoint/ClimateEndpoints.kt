@@ -11,26 +11,26 @@ import retrofit2.http.Query
 interface ClimateEndpoints {
     @GET("/data/2.5/climate/month")
     fun climateByCityName(
-            @Query("q") cityName: String?,
-            @Query("appid") apiKey: String?
+            @Query("q") cityName: String,
+            @Query("appid") apiKey: String
     ): Call<ClimateResponse?>
 
     @GET("/data/2.5/climate/month")
     fun climateByCityId(
-            @Query("id") cityId: String?,
-            @Query("appid") apiKey: String?
+            @Query("id") cityId: String,
+            @Query("appid") apiKey: String
     ): Call<ClimateResponse?>
 
     @GET("/data/2.5/climate/month")
     fun climateByCoOrd(
-            @Query("lat") latitude: String?,
-            @Query("lon") longitude: String?,
-            @Query("appid") apiKey: String?
+            @Query("lat") latitude: Double,
+            @Query("lon") longitude: Double,
+            @Query("appid") apiKey: String
     ): Call<ClimateResponse?>
 
     @GET("/data/2.5/climate/month")
     fun climateByZip(
-            @Query("zip") zipCode: String?,
-            @Query("appid") apiKey: String?
+            @Query("zip") zipCode: String,
+            @Query("appid") apiKey: String
     ): Call<ClimateResponse?>
 }
