@@ -11,26 +11,26 @@ import retrofit2.http.Query
 interface DailyForecastEndpoints {
     @GET("data/2.5/forecast/daily")
     fun dailyForecastByCityName(
-            @Query("q") cityName: String?,
-            @Query("appid") apiKey: String?
+            @Query("q") cityName: String,
+            @Query("appid") apiKey: String
     ): Call<DailyForecastResponse?>
 
     @GET("data/2.5/forecast/daily")
     fun dailyForecastByCityId(
-            @Query("id") cityId: String?,
-            @Query("appid") apiKey: String?
+            @Query("id") cityId: String,
+            @Query("appid") apiKey: String
     ): Call<DailyForecastResponse?>
 
     @GET("data/2.5/forecast/daily")
     fun dailyForecastByCoOrd(
-            @Query("lat") latitude: String?,
-            @Query("lon") longitude: String?,
-            @Query("appid") apiKey: String?
+            @Query("lat") latitude: Double,
+            @Query("lon") longitude: Double,
+            @Query("appid") apiKey: String
     ): Call<DailyForecastResponse?>
 
     @GET("data/2.5/forecast/daily")
     fun dailyForecastByZip(
-            @Query("zip") zipCode: String?,
-            @Query("appid") apiKey: String?
+            @Query("zip") zipCode: String,
+            @Query("appid") apiKey: String
     ): Call<DailyForecastResponse?>
 }

@@ -22,7 +22,7 @@ internal object DailyForecastClientTest {
             println(response3.toString())
             val response4 = client.dailyForecastByCityId("2172797")
             println(response4.toString())
-            val response5 = client.dailyForecastByCoOrd("35", "139")
+            val response5 = client.dailyForecastByCoOrd(35.0, 139.0)
             println(response5.toString())
             val response6 = client.dailyForecastByZip("94040", "us")
             println(response6.toString())

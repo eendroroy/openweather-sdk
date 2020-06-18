@@ -18,7 +18,7 @@ class DailyForecastClient(
     private val endpointsDaily: DailyForecastEndpoints = retrofit.create(DailyForecastEndpoints::class.java)
 
     @Throws(IOException::class)
-    fun dailyForecastByCityName(cityName: String?): DailyForecastResponse? {
+    fun dailyForecastByCityName(cityName: String): DailyForecastResponse? {
         val responseHourly: Response<DailyForecastResponse?> = endpointsDaily.dailyForecastByCityName(
                 cityName, configuration.appId()
         ).execute()
@@ -42,7 +42,7 @@ class DailyForecastClient(
     }
 
     @Throws(IOException::class)
-    fun dailyForecastByCityId(cityId: String?): DailyForecastResponse? {
+    fun dailyForecastByCityId(cityId: String): DailyForecastResponse? {
         val responseHourly: Response<DailyForecastResponse?> = endpointsDaily.dailyForecastByCityId(
                 cityId, configuration.appId()
         ).execute()
@@ -50,7 +50,7 @@ class DailyForecastClient(
     }
 
     @Throws(IOException::class)
-    fun dailyForecastByCoOrd(latitude: String?, longitude: String?): DailyForecastResponse? {
+    fun dailyForecastByCoOrd(latitude: Double, longitude: Double): DailyForecastResponse? {
         val responseHourly: Response<DailyForecastResponse?> = endpointsDaily.dailyForecastByCoOrd(
                 latitude, longitude, configuration.appId()
         ).execute()

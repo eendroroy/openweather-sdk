@@ -18,7 +18,7 @@ class HourlyForecastClient(
     private val endpointsHourly: HourlyForecastEndpoints = retrofit.create(HourlyForecastEndpoints::class.java)
 
     @Throws(IOException::class)
-    fun hourlyForecastByCityName(cityName: String?): HourlyForecastResponse? {
+    fun hourlyForecastByCityName(cityName: String): HourlyForecastResponse? {
         val responseHourly: Response<HourlyForecastResponse?> = endpointsHourly.hourlyForecastByCityName(
                 cityName, configuration.appId()
         ).execute()
@@ -42,7 +42,7 @@ class HourlyForecastClient(
     }
 
     @Throws(IOException::class)
-    fun hourlyForecastByCityId(cityId: String?): HourlyForecastResponse? {
+    fun hourlyForecastByCityId(cityId: String): HourlyForecastResponse? {
         val responseHourly: Response<HourlyForecastResponse?> = endpointsHourly.hourlyForecastByCityId(
                 cityId, configuration.appId()
         ).execute()
@@ -50,7 +50,7 @@ class HourlyForecastClient(
     }
 
     @Throws(IOException::class)
-    fun hourlyForecastByCoOrd(latitude: String?, longitude: String?): HourlyForecastResponse? {
+    fun hourlyForecastByCoOrd(latitude: Double, longitude: Double): HourlyForecastResponse? {
         val responseHourly: Response<HourlyForecastResponse?> = endpointsHourly.hourlyForecastByCoOrd(
                 latitude, longitude, configuration.appId()
         ).execute()
