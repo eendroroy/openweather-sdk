@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonRootName
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("list")
-data class ForecastListDaily(
+data class ForecastHourly(
         @JsonProperty("dt") val dt: Int?,
         @JsonProperty("main") val main: Main?,
         @JsonProperty("weather") val weather: List<Weather>?,
-        @JsonProperty("clouds") val clouds: Int?,
+        @JsonProperty("clouds") val clouds: Clouds?,
         @JsonProperty("wind") val wind: Wind?,
         @JsonProperty("sys") val sys: Sys?,
         @JsonProperty("dt_txt") val dt_txt: String?

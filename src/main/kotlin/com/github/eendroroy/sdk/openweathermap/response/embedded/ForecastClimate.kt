@@ -9,12 +9,10 @@ import com.fasterxml.jackson.annotation.JsonRootName
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("list")
-data class ForecastListHoulry(
+data class ForecastClimate(
         @JsonProperty("dt") val dt: Int?,
-        @JsonProperty("main") val main: Main?,
-        @JsonProperty("weather") val weather: List<Weather>?,
-        @JsonProperty("clouds") val clouds: Clouds?,
-        @JsonProperty("wind") val wind: Wind?,
-        @JsonProperty("sys") val sys: Sys?,
-        @JsonProperty("dt_txt") val dt_txt: String?
+        @JsonProperty("humidity") val humidity: Double?,
+        @JsonProperty("pressure") val pressure: Double?,
+        @JsonProperty("temp") val temperature: Temperature?,
+        @JsonProperty("wind_speed") val windSpeed: Double?
 )

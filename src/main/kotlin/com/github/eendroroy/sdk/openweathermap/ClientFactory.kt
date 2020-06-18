@@ -1,9 +1,6 @@
 package com.github.eendroroy.sdk.openweathermap
 
-import com.github.eendroroy.sdk.openweathermap.client.DailyForecastClient
-import com.github.eendroroy.sdk.openweathermap.client.HourlyForecastClient
-import com.github.eendroroy.sdk.openweathermap.client.UnsafeOkHttpClientBuilder
-import com.github.eendroroy.sdk.openweathermap.client.WeatherClient
+import com.github.eendroroy.sdk.openweathermap.client.*
 import com.github.eendroroy.sdk.openweathermap.config.DefaultOWConfiguration
 import com.github.eendroroy.sdk.openweathermap.config.OWConfiguration
 import com.github.eendroroy.sdk.openweathermap.interceptor.DefaultOWInterceptor
@@ -29,6 +26,11 @@ class ClientFactory {
     val dailyForecastClient: DailyForecastClient
         get() {
             return DailyForecastClient(retrofit, configuration)
+        }
+
+    val climateClient: ClimateClient
+        get() {
+            return ClimateClient(retrofit, configuration)
         }
 
     private var interceptor: OWInterceptor = DefaultOWInterceptor()
