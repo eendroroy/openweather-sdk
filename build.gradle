@@ -1,7 +1,7 @@
 plugins {
-    id 'java'
     id 'maven-publish'
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
+    id "com.jfrog.bintray" version "1.8.5"
 }
 
 repositories {
@@ -12,7 +12,7 @@ repositories {
 }
 
 group = 'com.github.eendroroy'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0'
 sourceCompatibility = '1.8'
 
 dependencies {
@@ -22,6 +22,15 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     testImplementation 'org.testng:testng:6.10'
     testImplementation 'org.jetbrains.kotlin:kotlin-test:1.3.72'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
 }
 
 publishing {
@@ -39,8 +48,31 @@ publishing {
         maven(MavenPublication) {
             from(components.java)
         }
+        binTray(MavenPublication) {
+            from(components.java)
+            artifact(sourcesJar)
+        }
         gpr(MavenPublication) {
             from(components.java)
+        }
+    }
+}
+
+bintray {
+    user = project.findProperty("bintray.user") ?: System.getenv("BINTRAY_USER")
+    key = project.findProperty("bintray.key") ?: System.getenv("BINTRAY_KEY")
+    publications = ["binTray"]
+    pkg {
+        repo = project.group
+        name = project.name
+        userOrg = user
+        licenses = ["MIT"]
+        vcsUrl = "https://github.com/eendroroy/openweathermap-sdk.git"
+        labels = ["otp-generator"]
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+            desc = "OTP generator"
         }
     }
 }

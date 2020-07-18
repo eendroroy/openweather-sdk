@@ -1,5 +1,6 @@
 # OpenWeatherMapSdk
 
+[![Download](https://api.bintray.com/packages/eendroroy/com.github.eendroroy/openweathermap-sdk/images/download.svg)](https://bintray.com/eendroroy/com.github.eendroroy/openweathermap-sdk/_latestVersion)
 [![GitHub tag](https://img.shields.io/github/tag/eendroroy/openweathermap-sdk.svg)](https://github.com/eendroroy/openweathermap-sdk/tags)
 
 [![Contributors](https://img.shields.io/github/contributors/eendroroy/openweathermap-sdk.svg)](https://github.com/eendroroy/openweathermap-sdk/graphs/contributors)
@@ -9,6 +10,25 @@
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/eendroroy/openweathermap-sdk.svg)](https://github.com/eendroroy/openweathermap-sdk/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/eendroroy/openweathermap-sdk.svg)](https://github.com/eendroroy/openweathermap-sdk/pulls)
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/eendroroy/openweathermap-sdk.svg)](https://github.com/eendroroy/openweathermap-sdk/pulls?q=is%3Apr+is%3Aclosed)
+
+### Installation
+
+*Maven*
+
+```xml
+<dependency>
+	<groupId>com.github.eendroroy</groupId>
+	<artifactId>openweathermap-sdk</artifactId>
+	<version>0.1.0</version>
+</dependency>
+```
+
+*Gradle*
+```groovy
+dependencies {
+    implementation 'com.github.eendroroy:openweathermap-sdk:0.1.0'
+}
+```
 
 ## Contributing
 
