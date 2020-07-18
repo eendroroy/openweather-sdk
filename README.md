@@ -19,14 +19,14 @@
 <dependency>
 	<groupId>com.github.eendroroy</groupId>
 	<artifactId>openweathermap-sdk</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1</version>
 </dependency>
 ```
 
 *Gradle*
 ```groovy
 dependencies {
-    implementation 'com.github.eendroroy:openweathermap-sdk:0.1.0'
+    implementation 'com.github.eendroroy:openweathermap-sdk:0.1.1'
 }
 ```
 
